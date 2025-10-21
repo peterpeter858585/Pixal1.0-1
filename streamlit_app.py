@@ -1,15 +1,15 @@
 # app_streamlit.py
 import os, re, json, datetime, requests
 import streamlit as st
-from langchain_classic.memory import ConversationBufferMemory
-from langchain_classic.agents import initialize_agent, AgentType, load_tools
-from langchain_classic.tools import Tool
+from langchain_community.memory import ConversationBufferMemory
+from langchain_community.agents import initialize_agent, AgentType, load_tools
+from langchain_community.tools import Tool
 from langchain_community.tools import ShellTool
 
 shell_tool = ShellTool()
 from langchain_experimental.tools.python.tool import PythonREPLTool
 from langchain_community.retrievers import WikipediaRetriever
-from langchain_classic.schema import HumanMessage, AIMessage, SystemMessage
+from langchain_community.schema import HumanMessage, AIMessage, SystemMessage
 
 from langchain_openai import ChatOpenAI
 
