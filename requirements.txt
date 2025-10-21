@@ -1,0 +1,21 @@
+# --- 필수 ---
+langchain>=0.3.0
+ddgs
+numexpr
+langchain-community>=0.3.0
+gradio>=4.42.0
+requests>=2.32.3
+langchain-experimental
+langchain_openai
+openai
+# --- 선택 (위키피디아 / DuckDuckGo / 유튜브 검색용) ---
+duckduckgo-search>=6.2.5
+wikipedia>=1.4.0
+youtube-search
+
+# --- GitHub 모델 LLM 연동용 ---
+azure-core>=1.30.0
+azure-ai-inference>=1.0.0b4
+
+# --- 수학 계산, 파이썬 REPL ---
+sympy>=1.13.0
