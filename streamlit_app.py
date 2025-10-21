@@ -1,12 +1,12 @@
 # app_streamlit.py
 import os, re, json, datetime, requests
 import streamlit as st
-from typing import Optional, List, Dict, Any
-from requests.adapters import HTTPAdapter, Retry
-from langchain.llms.base import LLM
 from langchain.memory import ConversationBufferMemory
 from langchain.agents import initialize_agent, AgentType, load_tools
 from langchain.tools import Tool
+from langchain_community.tools import ShellTool
+
+shell_tool = ShellTool()
 from langchain_experimental.tools.python.tool import PythonREPLTool
 from langchain_community.retrievers import WikipediaRetriever
 from langchain.schema import HumanMessage, AIMessage, SystemMessage
@@ -21,9 +21,9 @@ llm = ChatOpenAI(
 # ──────────────────────────────
 # ✅ Tools, Memory, and Agent Setup
 # ──────────────────────────────
-llm = GitHubModelLLM()
 tools = load_tools(["ddg-search", "requests_all", "llm-math"], llm=llm, allow_dangerous_tools=True)
 tools.append(Tool(name="python_repl", func=PythonREPLTool().run, description="Python 코드 실행 도구"))
+tools.append(shell_tool)
 retriever = WikipediaRetriever(lang="ko")
 tools.append(Tool(name="wiki", func=retriever.get_relevant_documents, description="위키백과 검색"))
 tools.append(Tool(name="time_now", func=lambda _: f"현재 시각: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')} (Asia/Seoul)", description="현재 시간을 반환합니다."))
